@@ -62,8 +62,8 @@ MinHeap<ElemType>::MinHeap(ElemType a[],int maxSize,int n)
 	while(i >= 0)	{
         FilterDown(i);
 		i--;
-		//Traverse(Write<ElemType>);
-		//cout << endl;
+		Traverse(Write<ElemType>);
+		cout << endl;
 	}
 }
 

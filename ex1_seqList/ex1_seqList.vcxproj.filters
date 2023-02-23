@@ -15,34 +15,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinaryTree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SeqStack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MineHeap.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="BinaryTree_Show.cpp">
+    <ClCompile Include="DblLinkList.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadedBinaryTree.cpp">
+    <ClCompile Include="SeqList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="minheap.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DblLinkList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SeqList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Status.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="student.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
