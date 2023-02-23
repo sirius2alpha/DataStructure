@@ -129,7 +129,8 @@
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="LinkQueue.h" />
-    <ClInclude Include="MineHeap.h" />
+    <ClInclude Include="MaxHeap.h" />
+    <ClInclude Include="MinHeap.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="SeqStack.h" />
   </ItemGroup>

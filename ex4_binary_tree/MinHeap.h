@@ -73,7 +73,8 @@ void MinHeap<ElemType>::FilterDown(const int Start)
 	int i = Start,j;
 	ElemType temp = heapArr[i];
 	j = 2 * i + 1;
-	while(j <= CurrentSize - 1)		{
+	while(j <= CurrentSize - 1)	
+	{
 		if(j < CurrentSize - 1 && heapArr[j] > heapArr[j+1])
 			j++;
 		if(temp <= heapArr[j]) break;

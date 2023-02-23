@@ -27,7 +27,10 @@
     <ClInclude Include="SeqStack.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MineHeap.h">
+    <ClInclude Include="MinHeap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MaxHeap.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
