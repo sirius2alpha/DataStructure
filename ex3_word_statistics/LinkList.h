@@ -11,7 +11,7 @@ template<typename ElemType>
 struct Node
 {
 	ElemType data;
-	Node<ElemType>* next;
+	Node<ElemType>* next=NULL;
 
 	Node();
 	Node(ElemType e, Node<ElemType>* link = NULL);
@@ -22,7 +22,7 @@ class LinkList
 {
 protected:
 	Node<ElemType>* head;
-	int length;
+	int length=0;
 public:
 	LinkList();
 	LinkList(ElemType v[], int n);
@@ -30,7 +30,7 @@ public:
 //	LinkList(const LinkList<ElemType>& la);
 	LinkList<ElemType>& operator = (const LinkList<ElemType>& la);
 
-	void Show()const;
+	void Show()const;                     //À≥–Ú ‰≥ˆ¡¥±Ì
 	int GetLength()const;
 	bool IsEmpty()const;
 	void Clear();
@@ -165,11 +165,21 @@ LinkList<ElemType>& LinkList<ElemType>::operator = (const LinkList<ElemType>& la
 template <typename ElemType>
 void LinkList<ElemType>::Show()const {
 	Node<ElemType>* p = head->next;
+	if (p == NULL) {
+		cout << "None." << endl;
+		return;
+	}
 	while (p -> next != NULL) {
-		cout << p->data;
+		cout << p->data << " ";
 		p = p->next;
 	}
-	cout << p->data;
+	cout << p->data << endl;
+}
+
+template<typename ElemType>
+inline int LinkList<ElemType>::GetLength() const
+{
+	return length;
 }
 
 template <typename ElemType>
@@ -260,13 +270,11 @@ template <typename ElemType>
 Status LinkList<ElemType>::InsertElem(const ElemType& e) {
 	Node<ElemType>* p, * q;
 	p = head;
-	if (p->next == NULL)return LIST_EMPTY;
 	q = new Node<ElemType>(e, NULL);
-	while (p->next != NULL && p->next->data.ID < e.ID) {
+	while (p->next != NULL) {
 		p = p->next;
 	}
-	q->next = p->next;
-	p->next = q;	
+	p->next = q;
 	length++;
 	return SUCCESS;
 }

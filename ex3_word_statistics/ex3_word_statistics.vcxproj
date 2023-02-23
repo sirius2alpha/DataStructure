@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d8098937-8a76-4728-82ea-49eb5f9af26d}</ProjectGuid>
-    <RootNamespace>DataStructure</RootNamespace>
+    <ProjectGuid>{5330aba9-3ecb-4fd2-afff-bee714e722da}</ProjectGuid>
+    <RootNamespace>ex3wordstatistics</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ex1_SeqList</ProjectName>
+    <ProjectName>ex3_group_word_statistics</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -105,6 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.../KMP+_Three-Tuple_Generalized-List/</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,17 +129,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DblLinkList.cpp" />
-    <ClCompile Include="LinkList.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SeqList.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DblLinkList.h" />
     <ClInclude Include="LinkList.h" />
-    <ClInclude Include="SeqList.h" />
-    <ClInclude Include="Status.h" />
-    <ClInclude Include="student.h" />
+    <ClInclude Include="word.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="news.txt" />
+    <Text Include="news2.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

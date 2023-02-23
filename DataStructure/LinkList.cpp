@@ -1,3 +1,4 @@
+//µ¥Á´±í
 #include"LinkList.h"
 #include"student.h"
 

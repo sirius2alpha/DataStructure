@@ -15,37 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\DataStructure\Status.h">
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="word.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SeqStack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SeqQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="time_a.h">
+    <ClInclude Include="LinkList.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SeqStack.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SeqQueue.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkQueue.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <Text Include="news.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="news2.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
 </Project>

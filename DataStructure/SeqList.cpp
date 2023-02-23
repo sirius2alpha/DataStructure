@@ -1,3 +1,4 @@
+//Ë³Ðò±í
 #include"SeqList.h"
 #include<iomanip>
 using namespace std;

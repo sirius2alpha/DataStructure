@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d8098937-8a76-4728-82ea-49eb5f9af26d}</ProjectGuid>
-    <RootNamespace>DataStructure</RootNamespace>
+    <ProjectGuid>{b8d27a17-70e2-41f4-9165-3b3300aee75e}</ProjectGuid>
+    <RootNamespace>ex4binarytree</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ex1_SeqList</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,17 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DblLinkList.cpp" />
-    <ClCompile Include="LinkList.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="SeqList.cpp" />
+    <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="LinkQueue.h" />
+    <ClInclude Include="MineHeap.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="SeqStack.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DblLinkList.h" />
-    <ClInclude Include="LinkList.h" />
-    <ClInclude Include="SeqList.h" />
-    <ClInclude Include="Status.h" />
-    <ClInclude Include="student.h" />
+    <ClCompile Include="BinaryTree_Show.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="minheap.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="ThreadedBinaryTree.cpp" />
+    <ClCompile Include="ThreadedBinaryTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

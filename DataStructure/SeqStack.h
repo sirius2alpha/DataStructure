@@ -1,3 +1,10 @@
+//还可以改进的地方：
+//1、对于车辆进场时间的描述   //调用time_a.h配置时间即可
+//2、对于输出选项数字长度大于12位之后会进入死循环  //解决方法应该是将int选项改为string类型即可
+//3、当车辆数量为7，而maxSize为8时，elems[++top]会报在XSTRING中的异常错误//已解决，判空条件错误 应该是top == maxSize - 1
+//4、对于进场时间的格式打印输出，没有0的地方填0，会影响到后续的cout的正常输出
+//5、Traverse函数的调用应该怎么调用
+
 #pragma once
 #define DEFAULT_SIZE 50
 #include<iomanip>
@@ -123,7 +130,7 @@ inline Status SeqStack<ElemType>::Top(ElemType& e) const           //取栈顶元素
 	if (IsEmpty())
 		return UNDER_FLOW;
 	else {
-		e=elems[top];
+		elems[++top] = e;
 		return SUCCESS;
 	}
 }

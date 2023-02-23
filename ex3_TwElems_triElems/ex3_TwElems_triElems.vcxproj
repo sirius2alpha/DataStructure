@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d8098937-8a76-4728-82ea-49eb5f9af26d}</ProjectGuid>
-    <RootNamespace>DataStructure</RootNamespace>
+    <ProjectGuid>{c3c79567-14af-445f-9a47-71e34ad1a5ed}</ProjectGuid>
+    <RootNamespace>ex3TwElemstriElems</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ex1_SeqList</ProjectName>
+    <ProjectName>ex3_group_TwElems_triElems</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,17 +128,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DblLinkList.cpp" />
-    <ClCompile Include="LinkList.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="SeqList.cpp" />
+    <ClInclude Include="Status.h" />
+    <ClInclude Include="twiElems.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DblLinkList.h" />
-    <ClInclude Include="LinkList.h" />
-    <ClInclude Include="SeqList.h" />
-    <ClInclude Include="Status.h" />
-    <ClInclude Include="student.h" />
+    <ClCompile Include="twiElems.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

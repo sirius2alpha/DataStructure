@@ -1,3 +1,4 @@
+//Ë³Ðò±í
 #pragma once
 #ifndef ORDERTABLE_H
 #define ORDERTABLE_H

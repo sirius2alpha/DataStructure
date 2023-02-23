@@ -15,36 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\DataStructure\Status.h">
+    <ClInclude Include="Status.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SeqStack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="SeqQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="time_a.h">
+    <ClInclude Include="twiElems.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SeqStack.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="SeqQueue.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkQueue.cpp">
+    <ClCompile Include="twiElems.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -3,22 +3,10 @@
 #include<iomanip>
 #include"Status.h"
 #include"Node.h"
-#include"time_a.h"
+#include"BinaryTree.h"
 
-
-struct car {
-	string ID = "00000000";
-	time_a time_ = { 2022,1,1,12,0,0 };
-	friend ostream& operator<<(ostream& out,car& c) {
-		out << "车牌号：" << c.ID << setw(15) 
-			<< "进场时间：" << c.time_<< endl;
-		return out;
-	}
-	friend istream& operator>>(istream& in,car& c) {
-		in >> c.ID >>c.time_;
-		return in;
-	}
-};
+template<class ElemType>
+struct BinTreeNode;
 
 template <typename ElemType>
 class SeqStack
@@ -26,28 +14,28 @@ class SeqStack
 protected:
 	int top;
 	int maxSize;
-	ElemType* elems;
+	BinTreeNode<ElemType>* elems;
 	void stackfull();
 
 public:
 	SeqStack(int size = DEFAULT_SIZE);
+	SeqStack(const SeqStack<ElemType>& s);
 	virtual ~SeqStack();
 	int GetLength()const;
-	bool IsEmpty()const;
+	bool empty()const;
 	void Clear();
 	void Traverse(void (*Visit)(const ElemType&))const;
 	void Show() const;
-	Status Push(const ElemType &e);
-	Status Top(ElemType& e)const;
-	Status Pop(ElemType& e);
-	SeqStack(const SeqStack<ElemType>& s);
+	Status push( BinTreeNode<ElemType>&e);
+	Status Top(BinTreeNode<ElemType>& e);
+	Status pop();
 	SeqStack<ElemType>& operator=(const SeqStack<ElemType>& s);
 };
 
 template<typename ElemType>
 inline void SeqStack<ElemType>::stackfull()
 {
-	ElemType* newarr= new ElemType[2*maxSize];
+	BinTreeNode<ElemType>* newarr= new BinTreeNode<ElemType>[2*maxSize];
 	for (int i = 0;i < maxSize;i++) {
 		newarr[i] = elems[i];
 	}
@@ -59,7 +47,7 @@ template <typename ElemType>
 inline SeqStack<ElemType>::SeqStack(int size) {
 	maxSize = size;
 	if (elems != NULL)delete[] elems;
-	elems = new ElemType[maxSize];
+	elems = new BinTreeNode<ElemType>[maxSize];
 	top = -1;
 }
 
@@ -76,7 +64,7 @@ inline int SeqStack<ElemType>::GetLength() const
 }
 
 template<typename ElemType>
-inline bool SeqStack<ElemType>::IsEmpty() const
+inline bool SeqStack<ElemType>::empty() const
 {
 	if (top == -1)return true;
 	else return false;
@@ -104,23 +92,25 @@ inline void SeqStack<ElemType>::Show() const
 }
 
 template<typename ElemType>
-inline Status SeqStack<ElemType>::Push(const ElemType &e)              
+inline Status SeqStack<ElemType>::push( BinTreeNode<ElemType>&e)
 {
-	if (top == maxSize-1) {
+	if (top == maxSize-1)		//如果栈满了，就将栈的容量扩大
+	{
 		stackfull();
 		elems[++top] = e;
 		return SUCCESS;
 	}
-	else {
+	else 
+	{
 		elems[++top] = e;
 		return SUCCESS;
 	}
 }
 
 template<typename ElemType>
-inline Status SeqStack<ElemType>::Top(ElemType& e) const           //取栈顶元素
+inline Status SeqStack<ElemType>::Top(BinTreeNode<ElemType>& e)            //取栈顶元素
 {
-	if (IsEmpty())
+	if (empty())
 		return UNDER_FLOW;
 	else {
 		e=elems[top];
@@ -129,13 +119,14 @@ inline Status SeqStack<ElemType>::Top(ElemType& e) const           //取栈顶元素
 }
 
 template<typename ElemType>
-inline Status SeqStack<ElemType>::Pop(ElemType& e)                   //出栈
+inline Status SeqStack<ElemType>::pop()                   //出栈
 {
-	if (IsEmpty())
+	if (empty())
 		return UNDER_FLOW;
 	else {
-		e = elems[top--];
+		elems[top--];
 		return SUCCESS;
 	}
 
 }
+

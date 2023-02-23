@@ -24,6 +24,7 @@
     <ProjectGuid>{89696625-37c5-4d07-a8d3-c167037ecb4e}</ProjectGuid>
     <RootNamespace>StackQueue</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>ex2_Stack_Queue</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -132,6 +133,7 @@
     <ClInclude Include="SeqStack.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="SeqQueue.h" />
+    <ClInclude Include="time_a.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LinkQueue.cpp" />

@@ -15,7 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\DataStructure\Status.h">
+    <ClInclude Include="BinaryTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkQueue.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
@@ -24,27 +27,24 @@
     <ClInclude Include="SeqStack.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SeqQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="time_a.h">
+    <ClInclude Include="MineHeap.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryTree_Show.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SeqStack.cpp">
+    <ClCompile Include="ThreadedBinaryTree.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadedBinaryTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SeqQueue.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="LinkQueue.cpp">
+    <ClCompile Include="minheap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

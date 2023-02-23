@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d8098937-8a76-4728-82ea-49eb5f9af26d}</ProjectGuid>
-    <RootNamespace>DataStructure</RootNamespace>
+    <ProjectGuid>{af5b239c-fdfa-4ae9-aa00-e1c664c036f1}</ProjectGuid>
+    <RootNamespace>KMPThreeTupleGeneralizedList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>ex1_SeqList</ProjectName>
+    <ProjectName>ex3_KMP+_Three-Tuple_Generalized-List</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,17 +128,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DblLinkList.cpp" />
-    <ClCompile Include="LinkList.cpp" />
+    <ClCompile Include="KMP.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SeqList.cpp" />
+    <ClCompile Include="triElems.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DblLinkList.h" />
-    <ClInclude Include="LinkList.h" />
-    <ClInclude Include="SeqList.h" />
+    <ClInclude Include="KMP.h" />
     <ClInclude Include="Status.h" />
-    <ClInclude Include="student.h" />
+    <ClInclude Include="triElems.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
