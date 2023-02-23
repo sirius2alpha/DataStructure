@@ -135,10 +135,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryTree_Show.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="minheap.cpp">
+    <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="minheap.cpp" />
     <ClCompile Include="ThreadedBinaryTree.cpp" />
     <ClCompile Include="ThreadedBinaryTree.h" />
   </ItemGroup>

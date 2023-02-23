@@ -1,6 +1,17 @@
 #ifndef HEAP_H
 #define HEAP_H
+#include<iostream>
 #include"Status.h"
+using namespace std;
+
+template <class ElemType>
+void Write(const ElemType& e)
+// 操作结果: 显示数据元素
+{
+	cout << e << "  ";
+}
+
+
 template<class ElemType> 
 class MinHeap{
 private:
@@ -51,8 +62,8 @@ MinHeap<ElemType>::MinHeap(ElemType a[],int maxSize,int n)
 	while(i >= 0)	{
         FilterDown(i);
 		i--;
-		Traverse(Write<ElemType>);
-		cout << endl;
+		//Traverse(Write<ElemType>);
+		//cout << endl;
 	}
 }
 
