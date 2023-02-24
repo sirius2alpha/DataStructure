@@ -2,8 +2,8 @@
 #include"MaxHeap.h"
 #include<iostream>
 using namespace std;
-//void minheap() {
-int main(){
+void minheap() {
+
 	int a[10] = { 3,13,2,51,12,16,1,4,6,5 };
 
 	cout << "数组a为：" << endl;
@@ -21,5 +21,5 @@ int main(){
 	cout << "插入元素60之后的最大堆：" << endl;
 	max.Insert(60);
 	max.Traverse(Write<int>);
-	return 0;
+	return ;
 }

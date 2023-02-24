@@ -31,7 +31,7 @@ int main() {
 			break;
 		};
 		case 3: {
-			//minheap();
+			minheap();
 			cout << endl;
 			break;
 		};

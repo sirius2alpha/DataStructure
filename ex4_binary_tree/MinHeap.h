@@ -46,6 +46,7 @@ MinHeap<ElemType>::MinHeap(int maxSize)
 	CurrentSize = 0;
 }
 
+/*
 template<class ElemType>
 MinHeap<ElemType>::MinHeap(ElemType a[],int maxSize,int n)
 {
@@ -65,6 +66,29 @@ MinHeap<ElemType>::MinHeap(ElemType a[],int maxSize,int n)
 		Traverse(Write<ElemType>);
 		cout << endl;
 	}
+}
+*/
+
+//从空堆中开始建立
+template<class ElemType>
+inline MinHeap<ElemType>::MinHeap(ElemType a[], int maxSize, int n)
+{
+	if (n <= 0) {
+		cerr << "堆的大小不能小于1" << endl;
+		exit(1);
+	}
+	MaxSize = maxSize;
+	heapArr = new ElemType[MaxSize]{0};
+	for (int i = 0; i < n; i++) {
+		heapArr[i] = a[i];
+		FilterUp(i);			//每插入一个元素到堆中，都进行一次该元素节点的向上调整（注意传入的参数是该节点的序号
+		CurrentSize++;
+		for (int j = 0; j < CurrentSize; j++)
+			cout<<heapArr[j]<<"  "<<flush;
+		cout << endl;
+	}
+	
+	
 }
 
 template<class ElemType>
