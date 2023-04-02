@@ -1,22 +1,24 @@
 #include "../header/UFSets.h"		            // 并查类
 
-void uff()
+void ufs()
 {
     try								// 用try封装可能出现异常的代码
 	{
 		const int n = 10;
 		char c[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
-		int a[] = {'a', 'g', 'i', 'c', 'a', 'h', 'f', 'f'};
-		int b[] = {'b', 'd', 'j', 'b', 'c', 'i', 'e', 'd'};
+		int a[] = {'h', 'i', 'd', 'b', 'b', 'a', 'f', 'f'};
+		int b[] = {'i', 'd', 'j', 'j', 'c', 'c', 'g', 'e'};
 		UFSets<char> e(c,n);
 		int i;
 		for (i = 0; i < 8; i++)
-			e.Union(a[i], b[i]);	// 合并等价类
+			e.HeightedUnion(a[i], b[i]);	// 合并等价类
 	
+		//添加一个put数组用于标记输出与否的信息
 		bool out[n];				// 已输出的结点值为true，否则值为false
-
 		for (i = 0; i < n; i++)
 			out[i] = false;
+
+		//等价类的输出
 		int p = 0;				// 当前结点
 		while (p < n)		{	// 对没有输出的当前结点，输出其等价类
 			cout << "{" << e.GetElem(p);
@@ -37,7 +39,6 @@ void uff()
 		err.Show();			// 显示异常信息
 	}
 
-	system("PAUSE");        // 调用库函数system()
 	return ;               
 }
 

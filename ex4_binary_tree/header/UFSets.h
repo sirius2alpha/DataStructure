@@ -30,15 +30,16 @@ protected:
 // 辅助函数
     int Find(ElemType e) const;		     // 查找元素e所在等价类的根
     int CollapsingFind(ElemType e) const;// 查找元素e所在等价类的根
-
+	int getHeight(ElemNode<ElemType> r)const;		 // 查找结点r的高度
 public:
 // 并查集的函数成员:
-	UFSets(ElemType es[], int n);	     // 构造sz个单结点树(等价类)
+	UFSets(ElemType es[], int n);	     // 构造n个单结点树(等价类)
 	virtual ~UFSets();				     // 析构函数
 	ElemType GetElem(int p)const;        // 取指定元素在数组中的下标 
 	int GetOrder(ElemType e)const;       // 根据指定下标取元素值 
 	void Union(ElemType a, ElemType b);	 // 合并a与b所在的等价类
 	void WeightedUnion(ElemType a, ElemType b);	 // 根据结点多少合并a与b所在的等价类
+	void HeightedUnion(ElemType a, ElemType b);	 // 根据树的高度合并a与b所在的等价类
     bool Differ(ElemType a, ElemType b); // 判断元素a、b是否在同一个等价类
 	UFSets(const UFSets &copy);		     // 复制构造函数
 	UFSets &operator =(const UFSets &copy);	// 赋值运算符
@@ -89,6 +90,19 @@ int UFSets<ElemType>::CollapsingFind(ElemType e) const
     }
     return i; 
 }
+
+template<class ElemType>
+inline int UFSets<ElemType>::getHeight(ElemNode<ElemType> r) const
+{
+	int time = 1;
+	while (r.parent > -1) {
+		getHeight(sets[r.parent]);
+		time++;
+	}
+	return time;
+}
+
+
 
 
 template <class ElemType>
@@ -148,6 +162,43 @@ void UFSets<ElemType>::WeightedUnion(ElemType a, ElemType b)
            sets[r2].parent = temp;       
        }
     }
+}
+
+template<class ElemType>
+inline void UFSets<ElemType>::HeightedUnion(ElemType a, ElemType b)
+{
+	// 操作结果：根据结点多少合并a与b所在的等价类
+	int r1 = Find(a);					// 查找a所在等价类的根		
+	int r2 = Find(b);					// 查找b所在等价类的根		
+	if (r1 != r2 && r1 != -1) {
+		int  temp = sets[r1].parent + sets[r2].parent;
+		//用树高度进行判断
+		if (getHeight(sets[r1]) <= getHeight(sets[r2]))
+		{
+			sets[r2].parent = r1;
+			sets[r1].parent = temp;
+		}
+		else {
+			sets[r1].parent = r2;       //r1中的结点个数少，r1指向r2 
+			sets[r2].parent = temp;
+		}
+	}
+	cout << "此次合并：" << a << "和" << b << ",合并后sets为：" << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cout << setw(3) << sets[i].data << " " << flush;
+	}
+	cout << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cout  << "- " << setw(4)<< flush;
+	}
+	cout << endl;
+	for (int i = 0; i < size; i++)
+	{
+		cout << setw(3) << sets[i].parent << " " << flush;
+	}
+	cout << endl;
 }
 
 template <class ElemType>

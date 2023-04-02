@@ -4,6 +4,7 @@ void ShowAndTraverse();
 void verify();
 void minheap();
 void childsilbing();
+void ufs();
 void mune() {
 	cout << "实验四验证：" << endl;
 	cout << setw(3) << "1" << setw(5) << " " << "二叉树的显示和三种遍历" << endl;
@@ -44,7 +45,7 @@ int main() {
 			break;
 		};
 		case 5: {
-			
+			ufs();
 			cout << endl;
 			break;
 		};
