@@ -18,6 +18,26 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="header\Assistance.h" />
+    <ClInclude Include="header\BinaryTree.h" />
+    <ClInclude Include="header\LinkQueue.h" />
+    <ClInclude Include="header\MaxHeap.h" />
+    <ClInclude Include="header\MinHeap.h" />
+    <ClInclude Include="header\Node.h" />
+    <ClInclude Include="header\SeqStack.h" />
+    <ClInclude Include="header\Status.h" />
+    <ClInclude Include="header\ThreadedBinaryTree.h" />
+    <ClInclude Include="header\UFSets.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\BinaryTree_Show.cpp" />
+    <ClCompile Include="src\child-silbing.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\minheap.cpp" />
+    <ClCompile Include="src\TestUFSets.cpp" />
+    <ClCompile Include="src\ThreadedBinaryTree.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -126,20 +146,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="BinaryTree.h" />
-    <ClInclude Include="LinkQueue.h" />
-    <ClInclude Include="MaxHeap.h" />
-    <ClInclude Include="MinHeap.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="SeqStack.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="BinaryTree_Show.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="minheap.cpp" />
-    <ClCompile Include="ThreadedBinaryTree.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

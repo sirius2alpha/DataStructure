@@ -15,36 +15,54 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinaryTree.h">
+    <ClInclude Include="header\Assistance.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="LinkQueue.h">
+    <ClInclude Include="header\BinaryTree.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Node.h">
+    <ClInclude Include="header\LinkQueue.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="SeqStack.h">
+    <ClInclude Include="header\MaxHeap.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MinHeap.h">
+    <ClInclude Include="header\MinHeap.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MaxHeap.h">
+    <ClInclude Include="header\Node.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="header\SeqStack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Status.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ThreadedBinaryTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="header\UFSets.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BinaryTree_Show.cpp">
+    <ClCompile Include="src\BinaryTree_Show.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\child-silbing.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadedBinaryTree.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="minheap.cpp">
+    <ClCompile Include="src\minheap.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TestUFSets.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThreadedBinaryTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,20 +4,29 @@
 #include"SeqStack.h"
 #include<vector>
 #include<string>
+#include<math.h>
+
 template<class ElemType>
 struct BinTreeNode
 {
 	//数据成员
-	ElemType data;						//数据域
-	BinTreeNode<ElemType>* leftChild;	//左孩子指针域
-	BinTreeNode<ElemType>* rightChild;	//右孩子指针域
+	ElemType data;							//数据域
+	BinTreeNode<ElemType>* leftChild;		//左孩子指针域
+	BinTreeNode<ElemType>* rightChild;		//右孩子指针域
+	BinTreeNode<ElemType>* child = NULL;	//兄弟孩子表示法右孩子域,当作左子树
+	BinTreeNode<ElemType>* silbing = NULL;	//兄弟孩子表示法中的，兄弟域，当作右孩子域
+	
+	//表示结点在树中的坐标
 	int x;
 	int y;
+	//孩子兄弟表示法的坐标
+	int cx;
+	int cy;
 
 	//函数成员
 	BinTreeNode();//无参数的构造函数
 	BinTreeNode(const ElemType& d, BinTreeNode<ElemType>* lChild = NULL, BinTreeNode<ElemType>* rChild = NULL);//已知数据元素值，指向左右孩子的指针构造一个结点
-	
+
 };
 
 template <typename ElemType>
@@ -38,12 +47,18 @@ protected:
 	BinTreeNode<ElemType>* Parent(BinTreeNode<ElemType>* r, const BinTreeNode<ElemType>* p)const;			//在以r为根的二叉树中求p的双亲
 
 	bool PreSet(BinTreeNode<ElemType>* r, int* location, int& i);											//设置二叉树结点的坐标 辅助函数
-	int CountLeaf(BinTreeNode<ElemType> *r)const;											//统计二叉树的叶子数目 辅助函数
-	void Revolut(BinTreeNode<ElemType>* r);													//实现二叉树所有左右子树互换
-	int CountBreadth(BinTreeNode<ElemType>* r);											//统计二叉树的最大宽度
+	int CountLeaf(BinTreeNode<ElemType> *r)const;															//统计二叉树的叶子数目 辅助函数
+	void Revolut(BinTreeNode<ElemType>* r);																	//实现二叉树所有左右子树互换
+	int CountBreadth(BinTreeNode<ElemType>* r);																//统计二叉树的最大宽度
 
+	void toChildSilbing(BinTreeNode<ElemType>* r);															//将二叉树中的结点连上temp指针域，向孩子-兄弟二叉树靠近
+	bool PreSet_cs(BinTreeNode<ElemType>* r, int* location, int& i);										//设置二叉树结点的坐标 辅助函数
+	int cs_getHeight(const BinTreeNode<ElemType>* r)const;													//求以r为根的二叉树的高度
+	int cs_getMaxBranch(const BinTreeNode<ElemType>* r)const;																				//求原来树的最大度
 
+	
 public:
+
 	//二叉树的函数成员
 	BinaryTree();																			//无参数的构造函数
 	BinaryTree(const ElemType& e);															//构造以e为根的二叉树
@@ -76,10 +91,18 @@ public:
 	void printTree();												//打印二叉树
 	int CountLeaf()const;											//统计二叉树的叶子数目
 	void Revolut();													//实现二叉树所有左右子树互换
-	int CountBreadth();											//统计二叉树的最大宽度
+	int CountBreadth();												//统计二叉树的最大宽度
 	void NonRecurringInOrder();										//实现非递归中序遍历
 
+	//孩子兄弟表示法板块
+	void toChildSilbing();												//将二叉树的child域和silbing域进行初始化
+	void cs_PrintTree();												//打印孩子兄弟表示法表示的树
+	void cs_SetXY();													//重新设置孩子兄弟表示法表示的树结点的坐标
+	int cs_getHeight()const;											//求孩子兄弟表示法表示树的高
+	int cs_getMaxBranch()const;											//求原来树的最大度
 };
+
+
 
 template<class ElemType>
 inline BinTreeNode<ElemType>::BinTreeNode()
@@ -561,6 +584,69 @@ inline void BinaryTree<ElemType>::NonRecurringInOrder()
 
 
 template<typename ElemType>
+inline void BinaryTree<ElemType>::toChildSilbing()
+{
+	toChildSilbing(root);
+}
+
+template<typename ElemType>
+inline void BinaryTree<ElemType>::cs_PrintTree()
+{
+
+	this->cs_SetXY();
+
+	LinkQueue<BinTreeNode<ElemType>*> q;		//定义队列q
+	BinTreeNode<ElemType>* p;
+	if (root != NULL)q.EnQueue(root);			//如果根非空，则入队
+	int cx = 0, cy = 0;							//cx和cy记录上一结点的坐标信息
+	
+	while (!q.IsEmpty()) {					    //q非空，说明还有结点未访问
+		q.DelQueue(p);							//队头元素出队，并访问它
+
+		
+		if (p->cy != cy)cout << endl;				//控制元素的换行
+		for (int i = p->cy == cy ? cx : 0; i < p->cx; i++)			//打印前导空格
+			cout << " ";
+		cout << p->data << flush;				//打印结点值
+
+		cx = p->cx;
+		cy = p->cy;
+		
+
+		if (p->child != NULL) {				//队头元素左孩子非空
+			q.EnQueue(p->child);			//左孩子入队
+			
+		}
+		if (p->silbing != NULL) {				//队头元素右孩子非空
+			q.EnQueue(p->silbing);			//右孩子入队
+		}
+	}
+}
+
+template<typename ElemType>
+inline void BinaryTree<ElemType>::cs_SetXY()
+{
+	int i = 1;
+	int location[10] = { 0 };
+	this->PreSet_cs(root, location, i);
+
+}
+
+template<typename ElemType>
+inline int BinaryTree<ElemType>::cs_getHeight() const
+{
+	return cs_getHeight(root);
+}
+
+template<typename ElemType>
+inline int BinaryTree<ElemType>::cs_getMaxBranch() const
+{	
+	//求树的度就是求孩子兄弟表示法中一个结点中最大的兄弟数量
+	return cs_getMaxBranch(root);
+}
+
+
+template<typename ElemType>
 inline bool BinaryTree<ElemType>::PreSet(BinTreeNode<ElemType>* r, int* location, int& i)
 // 操作结果：二叉树的每一个节点都用坐标XY标记
 {
@@ -649,3 +735,103 @@ inline int BinaryTree<ElemType>::CountBreadth(BinTreeNode<ElemType>* r)
 	}
 	return count;
 }
+
+template<typename ElemType>
+inline void BinaryTree<ElemType>::toChildSilbing(BinTreeNode<ElemType>* r)
+{
+	
+	if (r != NULL)
+	{
+		if (r->leftChild != NULL) {
+			r->child = r->leftChild;
+			BinTreeNode<ElemType>* dest = r->leftChild;
+			if (r->rightChild != NULL)dest->silbing = r->rightChild;
+		}
+		else if (r->rightChild != NULL)
+			r->child = r->rightChild;
+		this->toChildSilbing(r->leftChild);
+		this->toChildSilbing(r->rightChild);
+	}
+}
+
+template<typename ElemType>
+inline bool BinaryTree<ElemType>::PreSet_cs(BinTreeNode<ElemType>* r, int* location, int& i)
+{
+	if (r != NULL)
+	{
+		//标记当前节点的坐标信息
+			//设置cy的坐标
+		r->cy = 2 * (i - 1);
+
+		//设置cx的坐标
+		int h = this->Height();//h表示整个二叉树的高度
+		int sum = 0;
+		int binary = 0;
+		int interval = 0;
+		for (int k = 1; k <= h - i; k++)
+			sum += pow(2, k);
+		for (int k = 2; k <= i; k++)
+			binary = binary * 2 + location[k];
+		for (int k = 2; k <= h - i + 1; k++)
+			interval += pow(2, k);
+		interval += 3;
+		r->cx = sum + binary * (interval + 1);
+
+		//标记左子树的坐标信息
+			//当下面的结点不为空时，location[i]来记录从根节点走到当前节点是怎么走的，0表示走左边，1表示走右边
+		if (r->child != NULL) {
+			i++;
+			location[i] = 0;
+			this->PreSet_cs(r->child, location, i);
+			i--;
+		}
+
+
+		//标记右子树的坐标信息
+		if (r->silbing != NULL) {
+			i++;
+			location[i] = 1;
+			this->PreSet_cs(r->silbing, location, i);
+			i--;
+		}
+		return true;
+	}
+	return false;
+}
+
+template<typename ElemType>
+inline int BinaryTree<ElemType>::cs_getHeight(const BinTreeNode<ElemType>* r) const
+{
+	if (r == NULL)	// 空二叉树高为0
+		return 0;
+	else {	// 非空二叉树高为左右子树的高的最大值再加1
+		int lHeight, rHeight;
+		lHeight = Height(r->leftChild);		// 左子树的高
+		rHeight = Height(r->silbing);	// 兄弟子树的高
+		return (lHeight > rHeight ? lHeight : rHeight) + 1;
+		// 非空二叉树高为左右子树的高的最大值再加1
+	}
+}
+
+template<typename ElemType>
+inline int BinaryTree<ElemType>::cs_getMaxBranch(const BinTreeNode<ElemType>* r) const
+{	
+	// 求树的度就是求孩子兄弟表示法中一个结点中最大的兄弟数量
+	int iMaxBranch = 1;				// 记录最大度
+	if (r != NULL) {
+		// 遍历每一个节点，求度，若找到则更新最大度
+		const BinTreeNode<ElemType>* current = r;
+		// 寻找最大的兄弟数量
+		while (current->silbing != NULL)
+		{
+			current = current->silbing;
+			iMaxBranch++;
+		}
+		int iMaxBranch_c = cs_getMaxBranch(r->child);
+		int iMaxBranch_s = cs_getMaxBranch(r->silbing);
+		iMaxBranch = iMaxBranch >= iMaxBranch_c ? iMaxBranch : iMaxBranch_c;
+		iMaxBranch = iMaxBranch >= iMaxBranch_s ? iMaxBranch : iMaxBranch_s;
+	}
+	return iMaxBranch;
+}
+

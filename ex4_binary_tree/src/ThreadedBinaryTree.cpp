@@ -1,5 +1,5 @@
-#include"ThreadedBinaryTree.h"
-#include"BinaryTree.h"
+#include"../header/ThreadedBinaryTree.h"
+#include"../header/BinaryTree.h"
 int show() {
 	string in = "ABD#E###C#F##";
 	int i = 0;

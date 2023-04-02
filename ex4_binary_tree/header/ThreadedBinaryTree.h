@@ -2,12 +2,13 @@
 #include"BinaryTree.h"
 template <class ElemType>
 class ThreadedBinaryTree {
+    friend class BinaryTree<ElemType>;
 private:
     struct Node {
         //Êı¾İ³ÉÔ±
         ElemType data;
         Node* left, * right;
-        bool leftTag, rightTag;//µ±TagÎª1Ê±±íÊ¾Ç°Çı»òÕßºó¼ÌÏßË÷£»TagÎª0Ê±±íÊ¾×óÓÒº¢×Ó
+        bool leftTag, rightTag;                                 //µ±TagÎª1Ê±±íÊ¾Ç°Çı»òÕßºó¼ÌÏßË÷£»TagÎª0Ê±±íÊ¾×óÓÒº¢×Ó
             
         //¹¹Ôìº¯Êı
         Node(const ElemType& val) : data(val), left(nullptr), right(nullptr), leftTag(false), rightTag(false) {}
@@ -17,14 +18,14 @@ private:
     Node* root;
 
     //ÏßË÷¶ş²æÊ÷µÄ¸¨Öúº¯Êı
-    void inOrderThread(Node* p, Node*& prev); // ÖĞĞò±éÀúÏßË÷»¯ ÒÔpÎª¸ùµÄ¶ş²æÊ÷£¬preÎªpµÄµÚÒ»¸ö½áµãµÄÇ°Çı½áµãÖ¸Õë
+    void inOrderThread(Node* p, Node*& prev);                    // ÖĞĞò±éÀúÏßË÷»¯ ÒÔpÎª¸ùµÄ¶ş²æÊ÷£¬preÎªpµÄµÚÒ»¸ö½áµãµÄÇ°Çı½áµãÖ¸Õë
 
 public:
     ThreadedBinaryTree() : root(nullptr) {}
-    ThreadedBinaryTree(const BinaryTree<ElemType> &bt);//ÓÉ¶ş²æÊ÷×ª»»ÎªÖĞĞòÏßË÷¶ş²æÊ÷£¬×ª»»¹¹Ôìº¯Êı
-    void inOrderThread();// ÖĞĞò±éÀúÏßË÷»¯
-    void inOrderTraversal() const;// ÖĞĞò±éÀú·Çµİ¹éÊµÏÖ
-    void insert(const ElemType& val); // ²åÈë½Úµã
+    ThreadedBinaryTree(const BinaryTree<ElemType> &bt);         //ÓÉ¶ş²æÊ÷×ª»»ÎªÖĞĞòÏßË÷¶ş²æÊ÷£¬×ª»»¹¹Ôìº¯Êı
+    void inOrderThread();                                       // ÖĞĞò±éÀúÏßË÷»¯
+    void inOrderTraversal() const;                              // ÖĞĞò±éÀú·Çµİ¹éÊµÏÖ
+    void insert(const ElemType& val);                           // ²åÈë½Úµã
 };
 
 template<class ElemType>
@@ -53,7 +54,7 @@ inline void ThreadedBinaryTree<ElemType>::inOrderThread(Node* p, Node*& prev)//Ö
 template<class ElemType>
 inline ThreadedBinaryTree<ElemType>::ThreadedBinaryTree(const BinaryTree<ElemType>& bt)
 {
-    root = bt.root;
+   // root = bt.root;
 }
 
 template<class ElemType>

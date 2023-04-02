@@ -1,5 +1,5 @@
-#include"MinHeap.h"
-#include"MaxHeap.h"
+#include"../header/MinHeap.h"
+#include"../header/MaxHeap.h"
 #include<iostream>
 using namespace std;
 void minheap() {
