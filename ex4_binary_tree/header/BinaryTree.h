@@ -806,10 +806,10 @@ inline int BinaryTree<ElemType>::cs_getHeight(const BinTreeNode<ElemType>* r) co
 		return 0;
 	else {	// 非空二叉树高为左右子树的高的最大值再加1
 		int lHeight, rHeight;
-		lHeight = Height(r->leftChild);		// 左子树的高
-		rHeight = Height(r->silbing);	// 兄弟子树的高
-		return (lHeight > rHeight ? lHeight : rHeight) + 1;
+		lHeight = cs_getHeight(r->child);		// 左子树的高
+		rHeight = cs_getHeight(r->silbing);	// 兄弟子树的高
 		// 非空二叉树高为左右子树的高的最大值再加1
+		return (lHeight > rHeight ? lHeight : rHeight) + 1;
 	}
 }
 

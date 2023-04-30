@@ -132,14 +132,21 @@
     <ClInclude Include="adj_list_dir_network\AdjListDirNetworkVex.h" />
     <ClInclude Include="adj_list_dir_network\Assistance.h" />
     <ClInclude Include="adj_matrix_undir_graph\AdjMatrixUndirGraph.h" />
+    <ClInclude Include="bfs\BFS.h" />
+    <ClInclude Include="bfs\LinkQueue.h" />
+    <ClInclude Include="dfs\DFS.h" />
+    <ClInclude Include="kruskal\Kruskal.h" />
+    <ClInclude Include="kruskal\MineHeap.h" />
+    <ClInclude Include="kruskal\UFSets.h" />
+    <ClInclude Include="prim\Prim.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ex5_graph.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="adj_list_dir_network\TestAdjListDirNetwork.cpp" />
-    <ClCompile Include="adj_matrix_undir_graph\TestAdjMatrixUndirGraph.cpp" />
+    <ClCompile Include="1_Vfound.cpp" />
+    <ClCompile Include="prim\2_Prim.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

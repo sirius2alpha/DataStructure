@@ -1,6 +1,6 @@
 #ifndef __ADJ_MATRIX_UNDIR_GRAPH_H__
 #define __ADJ_MATRIX_UNDIR_GRAPH_H__
-#include "Assistance.h"                 // 辅助软件包
+#include "../Assistance.h"                 // 辅助软件包
 
 // 无向图的邻接矩阵类
 template <class ElemType, class WeightType>
@@ -8,11 +8,11 @@ class AdjMatrixUndirNetwork
 {
 protected:
 // 邻接矩阵的数据成员:
-	int vexNum, vexMaxNum, edgeNum;			// 顶点数目、允许的顶点最大数目和边数
+	int vexNum, vexMaxNum, edgeNum;		// 顶点数目、允许的顶点最大数目和边数
 	int **arcs;							// 存放边信息邻接矩阵
-	ElemType *vertexes;						// 存放顶点信息的数组 
-	Status *tag;							// 标志数组
-	WeightType infinity;					// 无穷大
+	ElemType *vertexes;					// 存放顶点信息的数组 
+	Status *tag;						// 标志数组
+	WeightType infinity;				// 无穷大
 
 public:
 // 邻接矩阵类型的方法声明:
@@ -21,8 +21,8 @@ public:
 		// 以数组es[]为顶点,顶点个数为vertexNum,允许的顶点最大数目为vertexMaxNum,边数为0的无向图
 	AdjMatrixUndirNetwork(int vertexMaxNum = DEFAULT_SIZE, WeightType infinit = (WeightType)DEFAULT_INFINITY);	
 		// 构造允许的顶点最大数目为vertexMaxNum,边数为0的无向图
-	~AdjMatrixUndirNetwork();					// 析构函数
-	void Clear();			              // 清空图			 
+	~AdjMatrixUndirNetwork();			// 析构函数
+	void Clear();			            // 清空图			 
 	bool IsEmpty();                 // 判断无向图是否为空 
 	int GetOrder(ElemType &e) const;// 求顶点的序号	
 	Status GetElem(int v, ElemType &e) const;// 求顶点的元素值	

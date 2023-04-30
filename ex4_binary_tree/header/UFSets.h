@@ -167,7 +167,7 @@ void UFSets<ElemType>::WeightedUnion(ElemType a, ElemType b)
 template<class ElemType>
 inline void UFSets<ElemType>::HeightedUnion(ElemType a, ElemType b)
 {
-	// 操作结果：根据结点多少合并a与b所在的等价类
+	// 操作结果：根据树的高度合并a与b所在的等价类
 	int r1 = Find(a);					// 查找a所在等价类的根		
 	int r2 = Find(b);					// 查找b所在等价类的根		
 	if (r1 != r2 && r1 != -1) {
@@ -183,6 +183,8 @@ inline void UFSets<ElemType>::HeightedUnion(ElemType a, ElemType b)
 			sets[r2].parent = temp;
 		}
 	}
+
+	//过程展示输出
 	cout << "此次合并：" << a << "和" << b << ",合并后sets为：" << endl;
 	for (int i = 0; i < size; i++)
 	{

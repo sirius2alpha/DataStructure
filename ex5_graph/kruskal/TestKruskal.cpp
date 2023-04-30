@@ -1,9 +1,8 @@
 #include "Kruskal.h"					// Kruskal算法
-
-int main(void)
+#include"../Assistance.h"
+int krusal(void)
 {
-    try									// 用try封装可能出现异常的代码
-	{
+
 		int infity = DEFAULT_INFINITY;
 		char vexs[] = {'A', 'B', 'C', 'D', 'E', 'F'};
 		int m[6][6] = {
@@ -15,7 +14,7 @@ int main(void)
 			{19, infity, 25, 25, 26, infity}
 		};
 		int n = 6;
-
+		
 		AdjMatrixUndirNetwork<char, int> net(vexs, n);
 
 		for (int u = 0; u < n; u++)	// 生成邻接矩阵的行
@@ -30,13 +29,7 @@ int main(void)
 		cout << "Kruskal算法产生最小生成树的边:" << endl;
 		MiniSpanTreeKruskal(net);		// Kruskal算法
 		cout << endl;
-	}
-	catch (Error err)					// 捕捉并处理异常
-	{
-		err.Show();						// 显示异常信息
-	}
-
-	system("PAUSE");					// 调用库函数system()
+	
 	return 0;							// 返回值0, 返回操作系统
 }
 

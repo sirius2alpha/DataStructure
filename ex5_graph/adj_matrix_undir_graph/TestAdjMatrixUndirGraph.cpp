@@ -1,9 +1,8 @@
 #include "AdjMatrixUndirGraph.h"		// 邻接矩阵无向图
 
-int main(void)
+int undirgraph(void)
 {
-    try									// 用try封装可能出现异常的代码
-	{
+
 		char vexs[] = {'A', 'B', 'C', 'D', 'E'};
 		int m[5][5] = {
 			{0, 1, 0, 1, 1},
@@ -86,13 +85,6 @@ int main(void)
 			        break;
        	      }
          }
-	}
-	catch (Error err)					// 捕捉并处理异常
-	{
-		err.Show();						// 显示异常信息
-	}
-
-	system("PAUSE");					// 调用库函数system()
 	return 0;							// 返回值0, 返回操作系统
 }
 
