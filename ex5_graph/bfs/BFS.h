@@ -1,6 +1,6 @@
 #ifndef __BFS_H__
 #define __BFS_H__
-#include "AdjMatrixUndirGraph.h"		// 无向图邻接矩阵
+#include "../AdjMatrixUndirGraph.h"		// 无向图邻接矩阵
 #include "LinkQueue.h"					// 链队列
 
 template <class ElemType>

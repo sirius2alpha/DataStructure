@@ -1,4 +1,3 @@
-#include"adj_matrix_undir_graph/AdjMatrixUndirGraph.h"
 #include"dfs/DFS.h"
 #include<stack>
 
@@ -8,7 +7,7 @@ Status findVex(const AdjMatrixUndirGraph<char>& g,int v1,int v2) {
 	return DFSforOne(g, v1, v2);
 }
 
-int main() {
+void vfound() {
 	char vexs[] = { 'A', 'B', 'C', 'D', 'E' };
 	int m[5][5] = {
 		{0, 1, 0, 1, 0},
@@ -52,5 +51,5 @@ int main() {
 		graph.SetTag(v, UNVISITED);				// 对每个顶点设置未访问标志
 	DFSTraverse_stack(graph, v1, v2);
 
-	return 0;
+	return;
 }

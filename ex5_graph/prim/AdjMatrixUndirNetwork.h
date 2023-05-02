@@ -1,6 +1,6 @@
+#include "../Assistance.h"                 // 辅助软件包
 #ifndef __ADJ_MATRIX_UNDIR_GRAPH_H__
 #define __ADJ_MATRIX_UNDIR_GRAPH_H__
-#include "../Assistance.h"                 // 辅助软件包
 
 // 无向图的邻接矩阵类
 template <class ElemType, class WeightType>

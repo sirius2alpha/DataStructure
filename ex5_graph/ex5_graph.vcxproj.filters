@@ -27,12 +27,6 @@
     <ClInclude Include="adj_list_dir_network\AdjListDirNetworkVex.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="adj_list_dir_network\Assistance.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="adj_matrix_undir_graph\AdjMatrixUndirGraph.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="bfs\BFS.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -54,6 +48,12 @@
     <ClInclude Include="prim\Prim.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Assistance.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AdjMatrixUndirGraph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ex5_graph.rc">
@@ -64,7 +64,13 @@
     <ClCompile Include="1_Vfound.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="prim\2_Prim.cpp">
+    <ClCompile Include="prim\2_Prim&amp;Kruskal.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Assistance.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="kruskal\TestKruskal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

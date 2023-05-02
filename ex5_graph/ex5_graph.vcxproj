@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdjMatrixUndirGraph.h" />
     <ClInclude Include="adj_list_dir_network\AdjListDirNetwork.h" />
     <ClInclude Include="adj_list_dir_network\AdjListDirNetworkArc.h" />
     <ClInclude Include="adj_list_dir_network\AdjListDirNetworkVex.h" />
-    <ClInclude Include="adj_list_dir_network\Assistance.h" />
-    <ClInclude Include="adj_matrix_undir_graph\AdjMatrixUndirGraph.h" />
+    <ClInclude Include="Assistance.h" />
     <ClInclude Include="bfs\BFS.h" />
     <ClInclude Include="bfs\LinkQueue.h" />
     <ClInclude Include="dfs\DFS.h" />
@@ -146,7 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1_Vfound.cpp" />
-    <ClCompile Include="prim\2_Prim.cpp" />
+    <ClCompile Include="Assistance.cpp" />
+    <ClCompile Include="kruskal\TestKruskal.cpp" />
+    <ClCompile Include="prim\2_Prim&amp;Kruskal.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

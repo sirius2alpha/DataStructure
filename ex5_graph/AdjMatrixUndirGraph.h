@@ -27,8 +27,10 @@ public:
 	Status SetElem(int v, const ElemType &d);// 设置顶点的元素值
 	int GetVexNum() const;					// 返回顶点个数			 
 	int GetArcNum() const;					// 返回边数			 
-	int FirstAdjVex(int v) const;		// 返回顶点v的第一个邻接点			 
+	int FirstAdjVex(int v) const;		// 返回顶点v的第一个邻接点
+	int FirstUnvisitedAdjVex(int v) const;		// 返回顶点v的第一个未访问过的邻接点
 	int NextAdjVex(int v1, int v2) const;		 // 返回顶点v1的相对于v2的下一个邻接点			 
+	int NextUnvisitedAdjVex(int v1, int v2) const;		// 返回顶点v的下一个未访问过的邻接点
 	void InsertVex(const ElemType &d);			 // 插入元素值为d的顶点		 
 	void InsertArc(int v1, int v2);			     // 插入顶点为v1和v2的边			 
 	void DeleteVex(const ElemType &d);			 // 删除元素值为d的顶点			 
@@ -38,7 +40,9 @@ public:
 	AdjMatrixUndirGraph(const AdjMatrixUndirGraph<ElemType> &g);	// 复制构造函数
 	AdjMatrixUndirGraph<ElemType> &operator =(const AdjMatrixUndirGraph<ElemType> &g); 
 		// 赋值语句重载
-  void Display();	                         // 显示邻接矩阵无向图
+	void Display();	                         // 显示邻接矩阵无向图
+
+	int LocateVex(const ElemType v);		// 定位顶点v在图中的位置
 };
 
 // 无向图的邻接矩阵类的实现部分
@@ -370,3 +374,45 @@ void AdjMatrixUndirGraph<ElemType>::Display()
 }
 
 #endif
+
+template<class ElemType>
+inline int AdjMatrixUndirGraph<ElemType>::LocateVex(const ElemType v)
+//定位顶点v在图中的位置
+{
+	for (int  i = 0; i < vexNum; i++)
+		if (vertexes[i] == v)return i;
+	return -1;
+}
+
+template<class ElemType>
+inline int AdjMatrixUndirGraph<ElemType>::FirstUnvisitedAdjVex(int v) const
+// 操作结果：返回顶点v的第1个邻接点的序号		 
+{
+	if (v < 0 || v >= vexNum)
+		throw Error("v不合法!");// 抛出异常
+
+	for (int u = 0; u < vexNum; u++)
+		if (arcs[v][u] != 0 && tag[u] == UNVISITED)
+			return u;
+
+	return -1;					// 返回-1表示无邻接点
+}
+
+template<class ElemType>
+inline int AdjMatrixUndirGraph<ElemType>::NextUnvisitedAdjVex(int v1,int v2) const
+// 操作结果：返回顶点v1的相对于v2的下一个邻接点			 
+{
+	if (v1 < 0 || v1 >= vexNum)
+		throw Error("v1不合法!");	// 抛出异常
+	if (v2 < 0 || v2 >= vexNum)
+		throw Error("v2不合法!");	// 抛出异常
+	if (v1 == v2) throw
+		Error("v1不能等于v2!");		// 抛出异常
+
+	for (int u = v2 + 1; u < vexNum; u++)
+		if (arcs[v1][u] != 0 && tag[u] == UNVISITED)
+			return u;
+
+	return -1;						// 返回-1表示无下一个邻接点
+}
+

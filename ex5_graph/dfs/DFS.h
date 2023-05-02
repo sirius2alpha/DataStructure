@@ -1,7 +1,7 @@
 #ifndef __DFS_H__
 #define __DFS_H__
 
-#include "AdjMatrixUndirGraph.h"		// ÎŞÏòÍ¼ÁÚ½Ó¾ØÕó
+#include"../AdjMatrixUndirGraph.h"
 #include<stack>
 
 template <class ElemType>

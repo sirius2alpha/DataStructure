@@ -1,4 +1,5 @@
 #include "Prim.h"						// Prim算法
+#include"../kruskal/Kruskal.h"			// Kruscal算法
 
 int main(void)
 {
@@ -7,12 +8,12 @@ int main(void)
 		int infity = DEFAULT_INFINITY;
 		char vexs[] = {'A', 'B', 'C', 'D', 'E', 'F'};
 		int m[6][6] = {
-			{0, 34, 46, infity, infity, 19},
-			{34, 0, infity, infity, 12, infity},
-			{46, infity, 0, 17, infity, 25},
-			{infity, infity, 17, 0, 38, 25},
-			{infity, 12, infity, 38, 0, 26},
-			{19, infity, 25, 25, 26, 0}
+			{0, 6, 3, 5, infity, infity},
+			{6, 0, infity, 1, 5, infity},
+			{3, infity, 0, 6, infity, 6},
+			{5, 1, 6, 0, 5, 4},
+			{infity, 5, infity, 5, 0, 2},
+			{infity, infity, 6, 4, 2, 0}
 		};
 		int n = 6;
 
@@ -26,11 +27,14 @@ int main(void)
 		cout << "原网:" << endl;
 		net.Display();					// 显示网net
 		cout << endl;
-		system("PAUSE");				// 调用库函数system()
 
 		cout << "从顶点A开始，利用Prim算法产生最小生成树的边:" << endl;
 		int u0 = 0;
 		MiniSpanTreePrim(net, u0);		// Prim算法
+		cout << endl;
+
+		cout << "Kruskal算法产生最小生成树的边:" << endl;
+		MiniSpanTreeKruskal(net);		// Kruskal算法
 		cout << endl;
 	}
 	catch (Error err)					// 捕捉并处理异常
