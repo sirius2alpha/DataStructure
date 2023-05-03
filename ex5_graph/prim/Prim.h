@@ -1,6 +1,6 @@
 #ifndef __PRIM_H__
 #define __PRIM_H__
-#include "AdjMatrixUndirNetwork.h"	// 邻接矩阵无向网
+#include "../public/AdjMatrixUndirNetwork.h"	// 邻接矩阵无向网
 
 template <class ElemType, class WeightType>
 struct CloseArcType {

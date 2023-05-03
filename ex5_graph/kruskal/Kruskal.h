@@ -1,6 +1,6 @@
 #ifndef __KRUSKAL_H__
 #define __KRUSKAL_H__
-#include "AdjMatrixUndirNetwork.h"		// 邻接表无向网
+#include "../public/AdjMatrixUndirNetwork.h"		// 邻接表无向网
 #include "UFSets.h"		                // 并查类
 #include "MineHeap.h"
 

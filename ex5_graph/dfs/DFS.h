@@ -2,7 +2,7 @@
 #define __DFS_H__
 
 #include"../public/AdjMatrixUndirGraph.h"
-#include"../prim/AdjMatrixUndirNetwork.h"
+#include"../public/AdjMatrixUndirNetwork.h"
 #include<stack>
 struct Arc
 {

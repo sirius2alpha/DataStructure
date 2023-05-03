@@ -1,7 +1,5 @@
-#include"prim/AdjMatrixUndirNetwork.h"	// 邻接矩阵无向网
+#include"public/AdjMatrixUndirNetwork.h"	// 邻接矩阵无向网
 #include"dfs/DFS.h"
-
-
 
 // 破圈法
 int main() {
