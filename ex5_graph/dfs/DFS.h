@@ -1,8 +1,15 @@
 #ifndef __DFS_H__
 #define __DFS_H__
 
-#include"../AdjMatrixUndirGraph.h"
+#include"../public/AdjMatrixUndirGraph.h"
+#include"../prim/AdjMatrixUndirNetwork.h"
 #include<stack>
+struct Arc
+{
+	int head;
+	int tail;
+	int weight;
+};
 
 template <class ElemType>
 void DFSTraverse(const AdjMatrixUndirGraph<ElemType> &g, void (*Visit)(const ElemType &))
@@ -34,6 +41,7 @@ void DFS(const AdjMatrixUndirGraph<ElemType> &g, int v, void (*Visit)(const Elem
 
 template <class ElemType>
 Status DFSforOne(const AdjMatrixUndirGraph<ElemType>& g, int v1, int v2)
+// 在图g中从v1开始寻找特定的点v2
 // 初始条件：存在图g
 // 操作结果：从顶点v出发进行深度优先搜索
 {
@@ -50,6 +58,7 @@ Status DFSforOne(const AdjMatrixUndirGraph<ElemType>& g, int v1, int v2)
 
 template <class ElemType>
 void DFSTraverse_stack(AdjMatrixUndirGraph<ElemType>g, int v1, const int v2, stack<int>& s) 
+// 寻找v1到v2的所有简单路径
 // g不是引用因为有回退的情况VISIT标识会更改的问题，stack为引用
 {
 	
@@ -83,6 +92,7 @@ void DFSTraverse_stack(AdjMatrixUndirGraph<ElemType>g, int v1, const int v2, sta
 
 template <class ElemType>
 void DFSTraverse_stack(AdjMatrixUndirGraph<ElemType>& g, int v1, const int v2)
+// 寻找v1到v2的所有简单路径
 // 初始条件：存在图g，起点为v1，终点为v2
 // 操作结果：利用栈对无向图g进行深度优先搜索，找到起点到终点的所有简单路径
 {
@@ -90,5 +100,90 @@ void DFSTraverse_stack(AdjMatrixUndirGraph<ElemType>& g, int v1, const int v2)
 	DFSTraverse_stack(g, v1, v2, s);	
 	return;
 }
+
+
+template <class ElemType, class WeightType>
+int DFS(const AdjMatrixUndirNetwork<ElemType, WeightType>& g, int v, int parent, stack<int>& s)
+{
+	ElemType e;
+	g.SetTag(v, VISITED);		// 设置顶点v已访问标志
+	g.GetElem(v, e);			// 取顶点v的数据元素值 
+	for (int w = g.FirstAdjVex(v); w != -1; w = g.NextAdjVex(v, w))
+	{
+		if (g.GetTag(w) == UNVISITED)
+		{
+			s.push(w);
+			// 从v的尚未访问过的邻接顶点w开始进行深度优先搜索
+			if(DFS(g, w, v, s))	return 1;
+		}
+		else if (w != parent) // 发现环
+		{
+			s.push(w);
+			return 1;
+		}
+	}
+	s.pop();		//最后一个bug，对于走错路的顶点也要退站！！不然之前走错的边也在里面
+	return 0;
+}
+
+
+template <class ElemType, class WeightType>
+void DFSTraverse(AdjMatrixUndirNetwork<ElemType, WeightType>& g)
+{
+	int v;
+	stack<int> s;
+
+
+
+	for (v = 0; v < g.GetVexNum(); v++) {
+		// 对每个顶点设置未访问标志
+		for (int vv = 0; vv < g.GetVexNum(); vv++)
+			g.SetTag(vv, UNVISITED);
+
+		if (g.GetTag(v) == UNVISITED) {
+			
+			// 如果栈不为空清空栈
+			while (!s.empty()) 
+				s.pop();
+
+			// 从尚未访问的顶点v开始进行深度优先搜索
+			s.push(v);
+			if (DFS(g, v, -1, s))
+				// 如果存在回路，则栈中保存的就是回路中顶点的信息；执行删除最大权值的边的操作
+			{
+				Arc arcs[10];
+				int i = 0;
+				// 从栈中取出回路中的顶点
+				int u = 0;
+				if (!s.empty()) {
+					u = s.top();
+					s.pop();
+				}
+				while (!s.empty()) {
+					int v = s.top();
+					s.pop();
+					int weight = g.GetWeight(u, v);
+					Arc arc = { u, v, weight };
+					arcs[i++] = arc;
+					u = v;
+				}
+
+				// 删除最大权值的边
+					//将数组arcs中的边的权值weight进行排序，删除最大权值的边
+				for (int j = 0; j < i; j++)
+					for (int k = j + 1; k < i; k++)
+						if (arcs[j].weight < arcs[k].weight)
+						{
+							Arc temp = arcs[j];
+							arcs[j] = arcs[k];
+							arcs[k] = temp;
+						}
+				cout << "删除" << arcs[0].tail << "到" << arcs[0].head << "的边" << endl;
+				g.DeleteArc(arcs[0].tail, arcs[0].head);
+			}
+		}
+	}
+}
+
 
 #endif

@@ -1,6 +1,6 @@
 #ifndef __ADJ_LIST_GRAPH_H__
 #define __ADJ_LIST_GRAPH_H__
-#include "../Assistance.h"						// 辅助软件包
+#include "../public/Assistance.h"						// 辅助软件包
 
 #include "AdjListDirNetworkArc.h"			// 网络邻接表的边结点类
 #include "AdjListDirNetworkVex.h"			// 网络邻接表的顶点结点类

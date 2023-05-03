@@ -127,11 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AdjMatrixUndirGraph.h" />
     <ClInclude Include="adj_list_dir_network\AdjListDirNetwork.h" />
     <ClInclude Include="adj_list_dir_network\AdjListDirNetworkArc.h" />
     <ClInclude Include="adj_list_dir_network\AdjListDirNetworkVex.h" />
-    <ClInclude Include="Assistance.h" />
     <ClInclude Include="bfs\BFS.h" />
     <ClInclude Include="bfs\LinkQueue.h" />
     <ClInclude Include="dfs\DFS.h" />
@@ -139,16 +137,17 @@
     <ClInclude Include="kruskal\MineHeap.h" />
     <ClInclude Include="kruskal\UFSets.h" />
     <ClInclude Include="prim\Prim.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="public\AdjMatrixUndirGraph.h" />
+    <ClInclude Include="public\Assistance.h" />
+    <ClInclude Include="public\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ex5_graph.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="1_Vfound.cpp" />
-    <ClCompile Include="Assistance.cpp" />
-    <ClCompile Include="kruskal\TestKruskal.cpp" />
-    <ClCompile Include="prim\2_Prim&amp;Kruskal.cpp" />
+    <ClCompile Include="3_poquanFunc.cpp" />
+    <ClCompile Include="public\Assistance.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

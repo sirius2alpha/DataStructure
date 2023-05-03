@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="adj_list_dir_network\AdjListDirNetwork.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -48,10 +45,13 @@
     <ClInclude Include="prim\Prim.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Assistance.h">
+    <ClInclude Include="public\AdjMatrixUndirGraph.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AdjMatrixUndirGraph.h">
+    <ClInclude Include="public\Assistance.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="public\resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -64,13 +64,10 @@
     <ClCompile Include="1_Vfound.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="prim\2_Prim&amp;Kruskal.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Assistance.cpp">
+    <ClCompile Include="public\Assistance.cpp">
       <Filter>头文件</Filter>
     </ClCompile>
-    <ClCompile Include="kruskal\TestKruskal.cpp">
+    <ClCompile Include="3_poquanFunc.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
