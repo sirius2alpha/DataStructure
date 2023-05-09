@@ -1,7 +1,7 @@
 #include "prim/Prim.h"						// Prim算法
 #include"kruskal/Kruskal.h"			// Kruscal算法
 
-void PrimAndKruskal(void)
+void PrimAndKruskal()
 {
     try									// 用try封装可能出现异常的代码
 	{

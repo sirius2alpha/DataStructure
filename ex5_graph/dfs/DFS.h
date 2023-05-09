@@ -104,6 +104,7 @@ void DFSTraverse_stack(AdjMatrixUndirGraph<ElemType>& g, int v1, const int v2)
 
 template <class ElemType, class WeightType>
 int DFS(const AdjMatrixUndirNetwork<ElemType, WeightType>& g, int v, int parent, stack<int>& s)
+// 对无向网g从顶点v出发进行深度优先搜索，parent是上一个顶点，避免将来时路径识别为环
 {
 	ElemType e;
 	g.SetTag(v, VISITED);		// 设置顶点v已访问标志
@@ -118,7 +119,7 @@ int DFS(const AdjMatrixUndirNetwork<ElemType, WeightType>& g, int v, int parent,
 		}
 		else if (w != parent) // 发现环
 		{
-			s.push(w);
+			s.push(w);		//也要将终点写入到栈中，后面要进行两个点一条边的取出边操作
 			return 1;
 		}
 	}
@@ -133,8 +134,7 @@ void DFSTraverse(AdjMatrixUndirNetwork<ElemType, WeightType>& g)
 	int v;
 	stack<int> s;
 
-
-
+	//每次搜索回路的时候，都要重新把标志设置为未访问过
 	for (v = 0; v < g.GetVexNum(); v++) {
 		// 对每个顶点设置未访问标志
 		for (int vv = 0; vv < g.GetVexNum(); vv++)
@@ -147,14 +147,15 @@ void DFSTraverse(AdjMatrixUndirNetwork<ElemType, WeightType>& g)
 				s.pop();
 
 			// 从尚未访问的顶点v开始进行深度优先搜索
-			s.push(v);
+			s.push(v);// 将搜索起点入栈
 			if (DFS(g, v, -1, s))
 				// 如果存在回路，则栈中保存的就是回路中顶点的信息；执行删除最大权值的边的操作
 			{
-				Arc arcs[10];
-				int i = 0;
+				Arc arcs[10];	//边的数组
+				int i = 0;		//用来控制写入边数组
+
 				// 从栈中取出回路中的顶点
-				int u = 0;
+				int u = 0;		//外边设置一个变量，在循环中进行替换
 				if (!s.empty()) {
 					u = s.top();
 					s.pop();
@@ -164,12 +165,13 @@ void DFSTraverse(AdjMatrixUndirNetwork<ElemType, WeightType>& g)
 					s.pop();
 					int weight = g.GetWeight(u, v);
 					Arc arc = { u, v, weight };
-					arcs[i++] = arc;
+					arcs[i++] = arc;	// 将边保存到数组中
 					u = v;
 				}
 
 				// 删除最大权值的边
-					//将数组arcs中的边的权值weight进行排序，删除最大权值的边
+					// 将数组arcs中的边的权值weight进行排序，删除最大权值的边
+					// 冒泡排序
 				for (int j = 0; j < i; j++)
 					for (int k = j + 1; k < i; k++)
 						if (arcs[j].weight < arcs[k].weight)

@@ -2,7 +2,8 @@
 #include"dfs/DFS.h"
 
 // 破圈法
-int main() {
+void poquanFunc() 
+{
 	int infity = DEFAULT_INFINITY;
 	char vexs[] = { '0', '1', '2', '3', '4', '5' };
 	int m[6][6] = {
@@ -30,11 +31,9 @@ int main() {
 	// 2、删除回路中权值最大的边
 	// 3、如果不存在回路，则操作停止
 	
-	DFSTraverse(net);
+	DFSTraverse(net);	// 在DFS中实现破圈法
 	cout << "使用破圈法修改之后网:" << endl;
 	net.Display();					// 显示网net
-	
-
-
-	return 0;
+	system("PAUSE");					// 调用库函数system()
+	return;
 }

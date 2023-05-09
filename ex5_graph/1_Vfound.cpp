@@ -24,8 +24,10 @@ void vfound() {
 		for (int v = 0; v < n; v++)
 			if (m[u][v] == 1) graph.InsertArc(u, v);
 
+	graph.Display();
+
 	char va, vb;
-	cout << "请输入两个顶点的值：";
+	cout << "请输入两个需要查找路径的顶点的值：";
 	cin >> va >> vb;
 	int v1 = graph.LocateVex(va);
 	int v2 = graph.LocateVex(vb);

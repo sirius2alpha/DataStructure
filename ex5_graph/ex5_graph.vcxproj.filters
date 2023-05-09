@@ -57,6 +57,9 @@
     <ClInclude Include="public\AdjMatrixUndirNetwork.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="public\ShortestPath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ex5_graph.rc">
@@ -76,5 +79,17 @@
     <ClCompile Include="2_Prim&amp;Kruskal.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="4_theShortestPath.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="4_in.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="4_in4.txt" />
   </ItemGroup>
 </Project>
