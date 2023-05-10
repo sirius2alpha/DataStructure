@@ -123,13 +123,14 @@ int DFS(const AdjMatrixUndirNetwork<ElemType, WeightType>& g, int v, int parent,
 			return 1;
 		}
 	}
-	s.pop();		//最后一个bug，对于走错路的顶点也要退站！！不然之前走错的边也在里面
+	s.pop();		//最后一个bug，对于走错路的顶点也要退栈！！不然之前走错的边也在里面
 	return 0;
 }
 
 
 template <class ElemType, class WeightType>
 void DFSTraverse(AdjMatrixUndirNetwork<ElemType, WeightType>& g)
+// 破圈法求最小生成树
 {
 	int v;
 	stack<int> s;
