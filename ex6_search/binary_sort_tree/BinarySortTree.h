@@ -3,6 +3,7 @@
 
 #include "LinkQueue.h"				// 链队列
 #include "BinTreeNode.h"			// 二叉树结点类
+#include "../public/Assistance.h"
 
 // 二叉排序树类
 template <class ElemType>
@@ -11,6 +12,7 @@ class BinarySortTree
 protected:
 //  二叉排序树的数据成员:
 	BinTreeNode<ElemType> *root;
+	int count;						// 二叉排序树的结点个数
 
 //	辅助函数:
 	BinTreeNode<ElemType> *CopyTree(BinTreeNode<ElemType> *r);	// 复制以r为根的二叉排序树
@@ -26,6 +28,7 @@ protected:
 		// 查找关键字为key的数据元素
 	void Delete(BinTreeNode<ElemType> *&p);				// 删除p指向的结点
 
+	void InOrderTraverse(BinTreeNode<ElemType>*, ElemType*, int) const;	// 中序遍历二叉排序树
 public:
 //  二叉排序树方法声明及重载编译系统默认方法声明:
 	BinarySortTree();									// 无参数的构造函数
@@ -54,8 +57,9 @@ public:
 	BinarySortTree(const ElemType &e);						// 建立以e为根的二叉排序树
 	BinarySortTree(const BinarySortTree<ElemType> &copy);	// 复制构造函数
 	BinarySortTree(BinTreeNode<ElemType> *r);				// 建立以r为根的二叉排序树
-	BinarySortTree<ElemType> &operator=
-		(const BinarySortTree<ElemType>& copy);	// 赋值语句重载
+	BinarySortTree<ElemType> &operator=(const BinarySortTree<ElemType>& copy);	// 赋值语句重载
+
+	bool isBST() const;	// 判断是否为二叉排序树
 };
 
 template <class ElemType>
@@ -322,6 +326,7 @@ bool BinarySortTree<ElemType>::Insert(const ElemType &e)
 	cout << "插入数据元素" << e <<"的搜索过程：" << endl;
 	if (Find(e, f) == NULL)	{	    // 查找失败, 插入成功
 		BinTreeNode<ElemType> *p;	// 插入的新结点
+		count++;					// 结点个数加1
 		p = new BinTreeNode<ElemType>(e);
 		if (IsEmpty())	            // 空二叉树,新结点为根结点
 			root = p;
@@ -369,6 +374,17 @@ void BinarySortTree<ElemType>::Delete(BinTreeNode<ElemType> *&p)
 			Delete(tmpF->rightChild);
 		else    // 删除tmpF的左孩子
 			Delete(tmpF->leftChild);
+	}
+}
+
+template<class ElemType>
+inline void BinarySortTree<ElemType>::InOrderTraverse(BinTreeNode<ElemType>* root, ElemType* arr, int i) const
+{
+	if (root != NULL)
+	{
+		InOrderTraverse(root->leftChild, arr, i);
+		arr[i++] = root->data;
+		InOrderTraverse(root->rightChild, arr, i);
 	}
 }
 
@@ -440,6 +456,20 @@ BinarySortTree<ElemType> &BinarySortTree<ElemType>::operator=(const BinarySortTr
 		root = CopyTree(copy.root);	// 复制二叉排序树
 	}
 	return *this;
+}
+
+template<class ElemType>
+inline bool BinarySortTree<ElemType>::isBST() const
+{
+	// 将中序遍历的结果保存在数组中
+	ElemType *arr = new ElemType[count];
+	int i = 0;
+	InOrderTraverse(root, arr, i);
+	// 判断是否有序
+	for (int j = 0; j < i - 1; j++)
+		if (arr[j] > arr[j + 1])
+			return false;
+	return true;
 }
 
 template <class ElemType>

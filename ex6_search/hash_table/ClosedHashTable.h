@@ -6,7 +6,7 @@
 #define EMPTY  0				// 空标记 
 #define USE    1				// 有元素标记 
 
-#include "Assistance.h"						// 辅助软件包
+#include "../public/Assistance.h"						// 辅助软件包
 
 // 散列表类
 template <class ElemType, class KeyType>
@@ -22,6 +22,7 @@ protected:
 //	辅助函数:
 	int H(KeyType key) const;					// 散列函数
 	int Collision(KeyType key, int i) const;	// 处理冲突的函数
+	int hash_rowandcol(const int row, const int col);
 
 public:
 //  二叉树方法声明及重载编译系统默认方法声明:
@@ -30,10 +31,13 @@ public:
   	void Traverse(void (*Visit)(const ElemType &)) const;	// 遍历散列表
 	int Search(const KeyType &key) const ;	    // 查寻关键字为key的元素的下标 
 	Status Insert(const ElemType &e);				// 插入元素e
+	Status Insert_rowandcol(const ElemType &e);				// 插入元素e
 	bool Delete(const KeyType &key);			// 删除关键字为key的元素
   	ClosedHashTable(const ClosedHashTable<ElemType, KeyType> &t);	// 复制构造函数
   	ClosedHashTable<ElemType, KeyType> &operator=
 		(const ClosedHashTable<ElemType, KeyType> &t);			// 赋值语句重载
+	int Search_rowandcol(const int row,const int col) ;	    // 查寻row和col的元素是否存在
+
 };
 
 // 散列表类的实现部分
@@ -51,6 +55,14 @@ int ClosedHashTable<ElemType, KeyType>::Collision(KeyType key, int i) const
 	return (H(key) + i) % maxSize;
 }
 
+template<class ElemType, class KeyType>
+inline int ClosedHashTable<ElemType, KeyType>::hash_rowandcol(const int row, const int col)
+{
+	int addr = 2 * (100 * (row / 10) + col / 10);
+	addr = H(addr);
+	return addr;
+}
+
 template <class ElemType, class KeyType>
 ClosedHashTable<ElemType, KeyType>::ClosedHashTable(int size, int divisor)
 // 操作结果: 以size为散列表容量, divisor为除留余数法的除数构造一个空的散表表
@@ -59,6 +71,12 @@ ClosedHashTable<ElemType, KeyType>::ClosedHashTable(int size, int divisor)
 	p = divisor;						// 赋值除数
 	ht = new ElemType[maxSize];			// 分配元素存储空间
 	tag = new int[maxSize];				// 分配标记数组存储空间
+
+	for (int i = 0; i < size; i++) {
+		ht[i].col = 0;
+		ht[i].row = 0;
+		ht[i].value = 0;
+	}
 
 	for (int i = 0; i < maxSize; i++)   // 将所有元素置空
 		tag[i] = 0;
@@ -85,49 +103,33 @@ void ClosedHashTable<ElemType, KeyType>::Traverse(void (*Visit)(const ElemType &
 			(*Visit)(ht[i]);			// 该位置有元素
 }
 
-template <class ElemType, class KeyType>
-int ClosedHashTable<ElemType, KeyType>::Search(const KeyType &key) const
-// 操作结果: 查寻关键字为key的元素的值,如果查找成功,返回元素在数组的下标,否则返回-1. 
+
+
+template<class ElemType, class KeyType>
+inline Status ClosedHashTable<ElemType, KeyType>::Insert_rowandcol(const ElemType& e)
 {
-	int c = 0;							// 冲突次数
-	int i = H(key);						// 元素的哈希函数值 
+	int i = hash_rowandcol(e.row, e.col);						// 元素的哈希函数值 
+	/*
+	int k = -1;                     	// 插入位置 
 
-	while (c < maxSize &&	((tag[i] == USE && ht[i] != key) || tag[i] == DELETE))					
-		// 冲突次数应小于maxSize且元素ht[pos]非空且关键字值不等
-		i = Collision(key, ++c);		// 求得下一个探查地址
-
-	if (c >= maxSize || tag[i] == EMPTY)
-		return -1;						// 查找失败，返回-1 
-	else 	
-		return i;						// 查找成功，返回元素在数组中的下标 
-}
-
-template <class ElemType, class KeyType>
-Status ClosedHashTable<ElemType, KeyType>::Insert(const ElemType &e)
-// 操作结果: 在散列表中插入数据元素e,插入成功返回true,否则返回false
-{
-   int c = 0;							// 冲突次数
-   int i = H(e);						// 元素的哈希函数值 
-   int k = -1;                     	// 插入位置 
-
-   while (c < maxSize &&	((tag[i] == USE && ht[i] != e) || tag[i] == DELETE)) {					
-      // 冲突次数应小于maxSize且元素ht[i]非空且关键字值不等
-      if (k == -1 && tag[i] == DELETE)
-         k = i;
-      i = Collision(e, ++c);		//求得下一个探查地址
-   }
-
-	if (c >= maxSize && k == -1)	   // 冲突次数应大于等于maxSize，说明哈希表已经放满 
-		 return OVER_FLOW;
-	else  if (tag[i] == USE && ht[i] == e)
-     return ENTRY_FOUND;
-  else  {		// 查找失败，则插入元素 
-     if (k == -1)
-        k = i;
-     ht[k] = e;
-     tag[k] = USE; 
-		 return SUCCESS;
-  }
+	// 如果哈希表该位置上没有元素，则插入
+	if (tag[i] != 1) {
+		tag[i] = 1;
+		ht[i].col = e.col;
+		ht[i].row = e.row;
+		ht[i].value = e.value;
+		return SUCCESS;
+	}
+	else if (e.col < 100)
+		Insert_rowandcol({ e.row,e.col + 1,e.value });
+	else if (e.row < 100)
+		Insert_rowandcol({ e.row + 1,e.col - 100,e.value });
+	else return OVER_FLOW;
+	*/
+	ht[i].col = e.col;
+	ht[i].row = e.row;
+	ht[i].value = e.value;
+	return SUCCESS;
 }
 
 template <class ElemType, class KeyType>
@@ -177,6 +179,16 @@ operator=(const ClosedHashTable<ElemType, KeyType> &t)
 		}
 	}
 	return *this;
+}
+
+template<class ElemType, class KeyType>
+inline int ClosedHashTable<ElemType, KeyType>::Search_rowandcol(const int row, const int col) 
+{
+	int addr = hash_rowandcol(row, col);
+	if (ht[addr].row == row && ht[addr].col == col) {
+		return addr;
+	}
+	return 0;
 }
 
 #endif

@@ -48,9 +48,4 @@ void Display(ElemType elem[], int n)
 	cout << endl;
 }
 
-template <class ElemType>
-void Write(const ElemType& e)
-// 操作结果: 显示数据元素
-{
-	cout << e << "  ";
-}
+

@@ -21,10 +21,14 @@
   <ItemGroup>
     <ClInclude Include="binary_sort_tree\BinarySortTree.h" />
     <ClInclude Include="binary_sort_tree\BinTreeNode.h" />
+    <ClInclude Include="hash_table\ClosedHashTable.h" />
+    <ClInclude Include="hash_table\Triple.h" />
     <ClInclude Include="public\Assistance.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="binary_sort_tree\TestBinarySortTree.cpp" />
+    <ClCompile Include="binary_sort_tree\BinarySortTree.cpp" />
+    <ClCompile Include="hash_table\ClosedHashTable.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="public\Assistance.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

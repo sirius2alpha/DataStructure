@@ -24,13 +24,25 @@
     <ClInclude Include="binary_sort_tree\BinTreeNode.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="hash_table\ClosedHashTable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="hash_table\Triple.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="binary_sort_tree\TestBinarySortTree.cpp">
+    <ClCompile Include="binary_sort_tree\BinarySortTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="public\Assistance.cpp">
       <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="hash_table\ClosedHashTable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
